@@ -29,20 +29,20 @@ curl https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-86430/DBE44960-5
   --create-dirs --output /Users/Shared/Parallels/MOS14-1.ipsw \
   && chmod +x "${_}"
 
-# mv
-prlctl create "MOS14.1-Template" -o macos --restore-image $HOME/Parallels/MOS14-1.ipsw
-
 # Source file location
 let INSTALLER="/Users/Shared/Parallels/MOS14-1.ipsw"
 
 # Specifies the VM installation path
-let VMPATH="~/Parallels/MOS-14.1.macvm"
+let VMPATH="$HOME/Parallels/MOS-14.1.macvm"
+
+# Creates the VM from teh .ipsw file
+prlctl create "MOS14.1-Template" -o macos --restore-image $HOME/Parallels/MOS14-1.ipsw
 
 # Registers the VM in Parallels Desktop
-prlctl register ~/Parallels/MOS14.1-Template.macvm
+prlctl register $HOME/Parallels/MOS14.1-Template.macvm
 
 # Changes to the VM installation directory
-cd ~/Parallels/MOS14.1-Template.macvm
+cd $HOME/Parallels/MOS14.1-Template.macvm
 
 # Increases storage drive to 100GB before boot
 truncate -s 100G disk0.img
@@ -52,7 +52,9 @@ prlctl net set -i "Bridged" -t bridged -d "Bridged mode with host machine" --dhc
 
 # Starts the VM & completes first-time setup
 prlctl start MOS14.1-Template
-# setup instructions?
+
+# TODO: macOS Automated Setup
+
 
 
 #*------------- TEMPLATE + VM CREATION ---------------*#
