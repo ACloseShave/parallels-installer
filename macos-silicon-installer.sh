@@ -54,7 +54,8 @@ prlctl net set -i "Bridged" -t bridged -d "Bridged mode with host machine" --dhc
 prlctl start MOS14.1-Template
 
 # TODO: macOS Automated Setup
-
+# 
+# ...
 
 
 #*------------- TEMPLATE + VM CREATION ---------------*#
