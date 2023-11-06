@@ -10,8 +10,8 @@
 # let LICENSE= 
 
 # Defines the macOS Template and Clone names
-# $TEMPLATE = 
-# $CLONE = 
+# let TEMPLATE= 
+# let CLONE= 
 
 # Signs into Parallels website
 # prlsrvctl web-portal signin $EMAIL
@@ -26,11 +26,11 @@
 
 # TODO: Downloads the .ipsw file & creates the VM
 curl https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-86430/DBE44960-58A6-4715-948B-D64F33F769BD/UniversalMac_14.1_23B74_Restore.ipsw \
-  --create-dirs -o /Users/Shared/Parallels/MOS14-1.ipsw \
+  --create-dirs --output /Users/Shared/Parallels/MOS14-1.ipsw \
   && chmod +x "${_}"
 
 # mv
-prlctl create "MOS14.1-Template" -o macos --restore-image ~/Parallels/MOS14-1.ipsw
+prlctl create "MOS14.1-Template" -o macos --restore-image $HOME/Parallels/MOS14-1.ipsw
 
 # Source file location
 let INSTALLER="/Users/Shared/Parallels/MOS14-1.ipsw"
