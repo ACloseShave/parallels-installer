@@ -3,11 +3,11 @@
 #*---------------- LICENSE REGISTRATION -----------------*#
 
 # Gathers user's registered Parallels email address
-# $EMAIL = osascript
+# let EMAIL=
 
 
 # Gathers the Parallels license key
-# $LICENSE = 
+# let LICENSE= 
 
 # Defines the macOS Template and Clone names
 # $TEMPLATE = 
@@ -24,16 +24,19 @@
 #*------------------ VM CONFIGURATION ------------------*#
 
 
-# TODO: Downloads the .ipsw file & creats the VM
-# curl -o MOS14-1.ipsw -P /Users/Shared/Parallels/ https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-86430/DBE44960-58A6-4715-948B-D64F33F769BD/UniversalMac_14.1_23B74_Restore.ipsw
+# TODO: Downloads the .ipsw file & creates the VM
+curl https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-86430/DBE44960-58A6-4715-948B-D64F33F769BD/UniversalMac_14.1_23B74_Restore.ipsw \
+  --create-dirs -o /Users/Shared/Parallels/MOS14-1.ipsw \
+  && chmod +x "${_}"
+
 # mv
-prlctl create "MOS14.1-Template" -o macos --restore-image /Users/ryanshaver/Parallels/MOS14-1.ipsw
+prlctl create "MOS14.1-Template" -o macos --restore-image ~/Parallels/MOS14-1.ipsw
 
 # Source file location
-# $INSTALLER = "/Users/Shared/Parallels/UniversalMac_14.1.23B74_Restore.ipsw"
+let INSTALLER="/Users/Shared/Parallels/MOS14-1.ipsw"
 
 # Specifies the VM installation path
-# $VMPATH = "~/Parallels/MOS-14.1.macvm"
+let VMPATH="~/Parallels/MOS-14.1.macvm"
 
 # Registers the VM in Parallels Desktop
 prlctl register ~/Parallels/MOS14.1-Template.macvm
@@ -45,7 +48,7 @@ cd ~/Parallels/MOS14.1-Template.macvm
 truncate -s 100G disk0.img
 
 # Adds "bridge" virtual network interface
-# prlctl net set -i "Bridged" -t bridged -d "Bridged mode with host machine" --dhcp-server on
+prlctl net set -i "Bridged" -t bridged -d "Bridged mode with host machine" --dhcp-server on
 
 # Starts the VM & completes first-time setup
 prlctl start MOS14.1-Template
