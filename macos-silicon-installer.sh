@@ -5,19 +5,20 @@
 # Gathers user's registered Parallels email address
 # let EMAIL=
 
-
 # Gathers the Parallels license key
 # let LICENSE= 
 
 # Defines the macOS Template and Clone names
-# let TEMPLATE= 
+# let TEMPLATE="MOS14-1"
 # let CLONE= 
 
-# Signs into Parallels website
+
+#*------- The following steps must be completed together -----*#
+
+# Signs into Parallels website - REQUIRED TO INSTALL LICENSE
 # prlsrvctl web-portal signin $EMAIL
 
-
-# TODO: Installs license
+# TODO: Installs license - WEB PORTAL SIGN-IN REQUIRED BEFORE THIS STEP
 # prlsrvctl install-license -k $LICENSE
 
 
@@ -53,9 +54,12 @@ prlctl net set -i "Bridged" -t bridged -d "Bridged mode with host machine" --dhc
 # Starts the VM & completes first-time setup
 prlctl start MOS14.1-Template
 
+#*------------- macOS Automated Setup ---------------*#
+
 # TODO: macOS Automated Setup
 # 
 # ...
+
 
 
 #*------------- TEMPLATE + VM CREATION ---------------*#
