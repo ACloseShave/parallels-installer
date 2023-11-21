@@ -27,20 +27,20 @@
 
 # TODO: Downloads the .ipsw file & creates the VM
 curl https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-86430/DBE44960-58A6-4715-948B-D64F33F769BD/UniversalMac_14.1_23B74_Restore.ipsw \
-  --create-dirs --output /Users/Shared/Parallels/MOS14-1.ipsw \
-  && chmod +x "${_}"
+--create-dirs --output /Users/Shared/Parallels/MOS14-1.ipsw \
+&& chmod +x "${_}"
 
 # Source file location
 let INSTALLER="/Users/Shared/Parallels/MOS14-1.ipsw"
 
 # Specifies the VM installation path
-let VMPATH="$HOME/Parallels/MOS-14.1.macvm"
+let VMPATH="$HOME/Parallels/MOS14.1-Template.macvm"
 
-# Creates the VM from teh .ipsw file
-prlctl create "MOS14.1-Template" -o macos --restore-image $HOME/Parallels/MOS14-1.ipsw
+# Creates the VM from the .ipsw file
+prlctl create "MOS14.1-Template" -o macos --restore-image $INSTALLER
 
 # Registers the VM in Parallels Desktop
-prlctl register $HOME/Parallels/MOS14.1-Template.macvm
+prlctl register $VMPATH
 
 # Changes to the VM installation directory
 cd $HOME/Parallels/MOS14.1-Template.macvm
@@ -49,10 +49,12 @@ cd $HOME/Parallels/MOS14.1-Template.macvm
 truncate -s 100G disk0.img
 
 # Adds "bridge" virtual network interface
-prlctl net set -i "Bridged" -t bridged -d "Bridged mode with host machine" --dhcp-server on
+# prlsrvctl net set -i "Bridged" -t bridged -d "Bridged mode with host machine" --dhcp-server on
 
 # Starts the VM & completes first-time setup
 prlctl start MOS14.1-Template
+
+echo "Made it this far"
 
 #*------------- macOS Automated Setup ---------------*#
 
