@@ -9,7 +9,7 @@
 # let LICENSE= 
 
 # Defines the macOS Template and Clone names
-# let TEMPLATE="MOS14-1"
+# let TEMPLATE="MOS14-1-1"
 # let CLONE= 
 
 
@@ -27,11 +27,11 @@
 
 # TODO: Downloads the .ipsw file & creates the VM
 curl https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-89681/55BD14DB-5535-4203-9359-E2C070E43FBE/UniversalMac_14.1.1_23B81_Restore.ipsw \
---create-dirs --output /Users/Shared/Parallels/MOS14-1.ipsw \
+--create-dirs --output /Users/Shared/Parallels/MOS14-1-1.ipsw \
 && chmod +x "${_}"
 
 # Source file location
-let INSTALLER="/Users/Shared/Parallels/MOS14-1.ipsw"
+let INSTALLER="/Users/Shared/Parallels/MOS14-1-1.ipsw"
 
 # Specifies the VM installation path
 let VMPATH="$HOME/Parallels/MOS14.1-Template.macvm"
