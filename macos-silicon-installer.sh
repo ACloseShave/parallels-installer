@@ -42,6 +42,9 @@ prlctl create "MOS14.1-Template" -o macos --restore-image $INSTALLER
 # Registers the VM in Parallels Desktop
 prlctl register $VMPATH
 
+# Disables auto-start--required to prevent the Mac from booting before adjusting storage size
+prlctl set --autostart off
+
 # Changes to the VM installation directory
 cd $HOME/Parallels/MOS14.1-Template.macvm
 
