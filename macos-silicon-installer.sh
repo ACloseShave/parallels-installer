@@ -26,7 +26,7 @@
 
 
 # TODO: Downloads the .ipsw file & creates the VM
-curl https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-86430/DBE44960-58A6-4715-948B-D64F33F769BD/UniversalMac_14.1_23B74_Restore.ipsw \
+curl https://updates.cdn-apple.com/2023FallFCS/fullrestores/042-89681/55BD14DB-5535-4203-9359-E2C070E43FBE/UniversalMac_14.1.1_23B81_Restore.ipsw \
 --create-dirs --output /Users/Shared/Parallels/MOS14-1.ipsw \
 && chmod +x "${_}"
 
